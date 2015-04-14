@@ -204,7 +204,7 @@ bot.commands.shitCommand = {
     
 	///////////////TIMERS///////////
 	function checktimeTimer() {
-		if (dj <= 1) {
+		if (dj === undefined) {
 			return API.djJoin();
 		}
 		else {
