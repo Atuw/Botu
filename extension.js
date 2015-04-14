@@ -166,6 +166,37 @@ bot.commands.shitCommand = {
          }
          }
          };	
+		 
+bot.commands.nerfCommand = {
+         command: 'nerf',
+         rank: 'user',
+         type: 'startsWith',
+         functionality: function(chat, cmd){
+         if(this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+         if( !bot.commands.executable(this.rank, chat) ) return void (0);
+         else{
+			var msg = chat.message;
+			var name;
+            var space = msg.indexOf(' ');
+            if (chat.un === msg.substring(7)) {
+                name = chat.un;
+                API.sendChat(subChat(bot.chat.selfnerf, {name: name}));
+                return false;
+            } else {
+                name = msg.substring(space + 2);
+                var user = bot.userUtilities.lookupUserName(name);
+                if (user === false || !user.inRoom) {
+                    return API.sendChat(subChat(bot.chat.nousernerf, {name: chat.un}));
+                } else if (msg.substring(7) === "Botu") {
+                    name = chat.un
+                    return API.sendChat(subChat(bot.chat.botnerf, {name: name}));
+                } else {
+                    return API.sendChat(subChat(bot.chat.nerf, {nameto: user.username, namefrom: chat.un}));
+                }
+            }
+        }
+        }
+        };	
 	
         bot.commands.shipVoteCommand = {
             command: 'voteship',
@@ -301,7 +332,7 @@ function countdownTimer() {
                 if (!bot.commands.executable(this.rank, chat)) return void(0);
                 else {
 					if (waitlistwatch === false) {
-						waitlistwatch = true;			
+						waitlistwatch = true;
 						var checktime = setInterval(function(){ checktimeTimer(); }, 180000);
 						return API.sendChat(subChat(bot.chat.waitlistwatchtrue));	
 					}
