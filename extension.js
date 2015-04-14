@@ -301,8 +301,8 @@ function countdownTimer() {
                 if (!bot.commands.executable(this.rank, chat)) return void(0);
                 else {
 					if (waitlistwatch === false) {
-						waitlistwatch = true;
-						var checktime = setInterval(function(){ checktimeTimer(); }, 1000);
+						waitlistwatch = true;			
+						var checktime = setInterval(function(){ checktimeTimer(); }, 180000);
 						return API.sendChat(subChat(bot.chat.waitlistwatchtrue));	
 					}
 					else {
