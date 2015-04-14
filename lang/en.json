@@ -9,7 +9,7 @@
 
 
     "welcome": "/me @%%NAME%% G R E E T I N G S T R A V E L L E R",
-    "welcomeback": "/me Welcome back, %%NAME%%",
+    "welcomeback": "/me @%%NAME%% G R E E T I N G S T R A V E L L E R",
     "songknown": "/me @%%NAME%%, this song is in the DJ history.",
     "timelimit": "/me @%%NAME%%, your song is longer than %%MAXLENGTH%% minutes, you need permission to play longer songs.",
     "permissionownsong": "/me :up: @%%NAME%% has permission to play their own production!",
@@ -50,6 +50,11 @@
     "invalidgiftags": "/me [@%%NAME%%] Invalid tags, try something different. [Tags: %%TAGS%%]",
     "validgifrandom": "/me [@%%NAME%%] http://media.giphy.com/media/%%ID%%/giphy.gif [Random GIF]",
     "invalidgifrandom": "/me [@%%NAME%%] Invalid request, try again.",
+	
+	"newship": "/me @%%NAME%% Just made a new ship! '%%SHIPNAME%%' use !showships to see all ships and !voteship to vote for your favourite!",
+	"showships": "/me The current ships are: %%SHIPS%%",
+	"shipvotes": "/me The votes are as follows: %%SHIPS%%",
+	"failvote": "/me B-baka! You voted wrong >.<",
 
 
     "invalidtime": "/me [@%%NAME%%] Invalid time specified.",
