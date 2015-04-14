@@ -201,16 +201,8 @@ bot.commands.shitCommand = {
 
 	var playlist = 0;
 	
-    function grab() {
-        selectPlaylist();
-        if (playlist > -1) {
-            if (API.getDJ().id !== API.getUser().id && !(document.querySelector('div#grab.selected'))) {
-                $("div#grab").click();
-                $($(".grab .menu ul li")[playlist]).mousedown();
-            }
-        }
-    }
-	
+    
+	///////////////TIMERS///////////
 	function checktimeTimer() {
 		if (dj <= 1) {
 			return API.djJoin();
@@ -231,7 +223,7 @@ function countdownTimer() {
 					countdown = null;
 				}
             }
-			
+		//////////////////FUNCTIONS////////////////	
     function selectPlaylist() {
         playlists = $('#playlist-menu .menu .row');
         for (i = 0; i < playlists.length; i++) {
@@ -252,7 +244,17 @@ function countdownTimer() {
             }
         }
 
-    }
+    };
+	function grab() {
+        selectPlaylist();
+        if (playlist > -1) {
+            if (API.getDJ().id !== API.getUser().id && !(document.querySelector('div#grab.selected'))) {
+                $("div#grab").click();
+                $($(".grab .menu ul li")[playlist]).mousedown();
+            }
+        }
+    };
+	//////////////////////////////////
         bot.commands.grabCommand = {
             command: 'votegrab',
             rank: 'user',
@@ -289,7 +291,7 @@ function countdownTimer() {
 			};
 			
 	var waitlistwatch = false;
-	var dj = API.getDJ();
+	var dj = API.getDJ()
 		bot.commands.waitlistwatchCommand = {
             command: 'waitlistwatch',
             rank: 'manager',
@@ -298,7 +300,6 @@ function countdownTimer() {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
                 if (!bot.commands.executable(this.rank, chat)) return void(0);
                 else {
-					var dj = API.getWaitList().length
 					if (waitlistwatch === false) {
 						waitlistwatch = true;
 						var checktime = setInterval(function(){ checktimeTimer(); }, 1000);
