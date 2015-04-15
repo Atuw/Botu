@@ -237,9 +237,14 @@ bot.commands.nerfCommand = {
 	function checktimeTimer() {
 		if (dj === undefined) {
 			return API.djJoin();
+			timeleft =  (API.getTimeRemaining() * 1000);
+		}
+		else if (dj.id == 5236185) {
+			timeleft =  (API.getTimeRemaining() * 1000);
 		}
 		else {
 			return API.djLeave()
+			timeleft =  (API.getTimeRemaining() * 1000);			
 		}
 	}
 	
@@ -331,9 +336,11 @@ function countdownTimer() {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
                 if (!bot.commands.executable(this.rank, chat)) return void(0);
                 else {
+					var timeleft;
 					if (waitlistwatch === false) {
 						waitlistwatch = true;
-						var checktime = setInterval(function(){ checktimeTimer(); }, 180000);
+						checktimeTimer();
+						var checktime = setInterval(function(){ checktimeTimer(); }, timeleft);
 						return API.sendChat(subChat(bot.chat.waitlistwatchtrue));	
 					}
 					else {
