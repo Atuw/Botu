@@ -188,8 +188,7 @@ bot.commands.nerfCommand = {
                 if (user === false || !user.inRoom) {
                     return API.sendChat(subChat(bot.chat.nousernerf, {name: chat.un}));
                 } else if (msg.substring(7) === "Botu") {
-                    name = msg.substring(space + 2);
-                    return API.sendChat(subChat(bot.chat.botnerf, {name: name}));
+                    return API.sendChat(subChat(bot.chat.botnerf, {name: chat.un}));
                 } else {
                     return API.sendChat(subChat(bot.chat.nerf, {nameto: user.username, namefrom: chat.un}));
                 }
@@ -413,12 +412,12 @@ function countdownTimer() {
         songstats: false,
         commandLiteral: "!",
         blacklists: {
-            NSFW: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/ExampleNSFWlist.json",
+            NSFW: "https://cdn.jsdelivr.net/gh/" + fork + "/basicBot-customization/master/blacklists/ExampleNSFWlist.json",
             OP: "https://atuw.org/botuw/op.json"
         }
     }));
 
     //Start the bot and extend it when it has loaded.
-    $.getScript("https://rawgit.com/Yemasthui/basicBot/master/basicBot.js", extend);
+    $.getScript("https://cdn.jsdelivr.net/gh/Yemasthui/basicBot/basicBot.js", extend);
 
 }).call(this);
