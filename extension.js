@@ -188,8 +188,7 @@ bot.commands.nerfCommand = {
                 if (user === false || !user.inRoom) {
                     return API.sendChat(subChat(bot.chat.nousernerf, {name: chat.un}));
                 } else if (msg.substring(7) === "Botu") {
-                    name = chat.un
-                    return API.sendChat(subChat(bot.chat.botnerf, {name: name}));
+                    return API.sendChat(subChat(bot.chat.botnerf, {name: chat.un}));
                 } else {
                     return API.sendChat(subChat(bot.chat.nerf, {nameto: user.username, namefrom: chat.un}));
                 }
@@ -237,9 +236,14 @@ bot.commands.nerfCommand = {
 	function checktimeTimer() {
 		if (dj === undefined) {
 			return API.djJoin();
+			timeleft =  (API.getTimeRemaining() * 1000);
+		}
+		else if (dj.id == 5236185) {
+			timeleft =  (API.getTimeRemaining() * 1000);
 		}
 		else {
 			return API.djLeave()
+			timeleft =  (API.getTimeRemaining() * 1000);			
 		}
 	}
 	
@@ -331,9 +335,11 @@ function countdownTimer() {
                 if (this.type === 'exact' && chat.message.length !== cmd.length) return void(0);
                 if (!bot.commands.executable(this.rank, chat)) return void(0);
                 else {
+					var timeleft;
 					if (waitlistwatch === false) {
 						waitlistwatch = true;
-						var checktime = setInterval(function(){ checktimeTimer(); }, 180000);
+						checktimeTimer();
+						var checktime = setInterval(function(){ checktimeTimer(); }, timeleft);
 						return API.sendChat(subChat(bot.chat.waitlistwatchtrue));	
 					}
 					else {
@@ -406,7 +412,7 @@ function countdownTimer() {
         songstats: false,
         commandLiteral: "!",
         blacklists: {
-            NSFW: "https://rawgit.com/" + fork + "/basicBot-customization/master/blacklists/ExampleNSFWlist.json",
+            NSFW: "https://cdn.jsdelivr.net/gh/" + fork + "/basicBot-customization/master/blacklists/ExampleNSFWlist.json",
             OP: "https://atuw.org/botuw/op.json"
         }
     }));
